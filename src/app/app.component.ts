@@ -67,8 +67,7 @@ export class AppComponent implements OnInit {
 
   runGame() {
     //sort the warriors in descending order 
-    //rank 10: highest
-    //rank 1: lowest
+    //rank 10: highest, rank 1: lowest
     this.teamAutobots.sort((a,b) => b.rank - a.rank);
     this.teamDeceptions.sort((a,b) => b.rank - a.rank);
     this.numBattles = Math.min(this.teamAutobots.length, this.teamDeceptions.length);
@@ -81,100 +80,44 @@ export class AppComponent implements OnInit {
         break;
       }
       if( this.teamAutobots[i].name.trim().toLowerCase() === "optimus prime") {
-        this.winnersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
-        this.losersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
+        this.updateLists('A', i);
         continue;
       }
       if( this.teamDeceptions[i].name.trim().toLowerCase() === "predaking") {
-        this.winnersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
-        this.losersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
+        this.updateLists('D', i);
         continue;
       }
 
       //run-away
       if( ((this.teamAutobots[i].courage - this.teamDeceptions[i].courage) >= 4) && ((this.teamAutobots[i].strength - this.teamDeceptions[i].strength) >= 3)) {
-        this.winnersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
-        this.losersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
+        this.updateLists('A', i);
         continue;
       }
       if( ((this.teamDeceptions[i].courage - this.teamAutobots[i].courage) >= 4) && ((this.teamDeceptions[i].strength - this.teamAutobots[i].strength) >= 3)) {
-        this.winnersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
-        this.losersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
+        this.updateLists('D', i);
         continue;
       }
 
       //skill based
       if( (this.teamAutobots[i].skill - this.teamDeceptions[i].skill) >= 3) {
-        this.winnersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
-        this.losersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
+        this.updateLists('A', i);
         continue;
       }
       if( (this.teamDeceptions[i].skill - this.teamAutobots[i].skill) >= 3) {
-        this.winnersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
-        this.losersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
+        this.updateLists('D', i);
         continue;
       }
 
       //overall rating based
       if( this.teamAutobots[i].overallRating > this.teamDeceptions[i].overallRating) {
-        this.winnersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
-        this.losersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
+        this.updateLists('A', i);
         continue;
       }
       if( this.teamDeceptions[i].overallRating > this.teamAutobots[i].overallRating) {
-        this.winnersList.push({
-          team: 'D',
-          name: this.teamDeceptions[i].name
-        });
-        this.losersList.push({
-          team: 'A',
-          name: this.teamAutobots[i].name
-        });
+        this.updateLists('D', i);
         continue;
       }
-      //tie - nothing is pushed to winnersList
+      //tie - nothing is pushed to winnersList/losersList
     }
 
     if( !this.abortFlag) {
@@ -206,5 +149,16 @@ export class AppComponent implements OnInit {
       }
 
     }
+  }
+
+  updateLists(winner, i) {
+    this.winnersList.push({
+      team: winner,
+      name: winner === "A" ? this.teamAutobots[i].name:this.teamDeceptions[i].name
+    });
+    this.losersList.push({
+      team: winner === "A" ? "D": "A",
+      name: winner === "A" ? this.teamDeceptions[i].name:this.teamAutobots[i].name 
+    });
   }
 }

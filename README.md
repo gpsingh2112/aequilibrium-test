@@ -1,27 +1,20 @@
-# Task2
+# Task1
+1. Please load task1.html in browser and open debug console.
+2. The function output (number of possible castles) is shown in the console.
+3. You need to change the function call to pass different arrays.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.3.
+# Task2
+This project was generated with Angular version 10.0.3.
+
+## Assumptions
+- The warriors are ranked by their "Rank" specification before being assigned to one-on-one battles.
 
 ## Development server
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+- Please don't forget to do npm install before running the app.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Overview of App
+- The app allows user to enter the warrior details in UI. User can select all of the warrior specifications.
+- User needs to press "Add Warrior" button to add the entered transformer in the group.
+- Once the group is created, user needs to press "Run Game" button to calculate scores.
+- User needs to refresh the browser to play again after the game is run. 
