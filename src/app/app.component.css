@@ -1,0 +1,23 @@
+h4, h5, p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.label {
+    display: inline-block;
+    width: 100px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.item {
+    width: 300px;
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gurpreet Task 1</title>
+</head>
+<body>
+    <script>
+        function countCastles(arr) {
+            console.log(arr);
+            let count = 0;
+            uniqueArr = arr.filter((item, index, list) => {
+                if(index < list.length-1 ) {
+                    if(item === list[index+1]) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            console.log(uniqueArr);
+            for(let i=0; i<uniqueArr.length; i++) {
+                if( (i === 0) || (i === (uniqueArr.length - 1)) ) {
+                    count++;
+                }
+                else {
+                    //i = 1 to length-2
+                    if( (uniqueArr[i] > uniqueArr[i-1]) && (uniqueArr[i] > uniqueArr[i+1])) {
+                        count++; //peak detected
+                    }
+                    if( (uniqueArr[i] < uniqueArr[i-1]) && (uniqueArr[i] < uniqueArr[i+1])) {
+                        count++; //valley detected
+                    }
+                    
+                } 
+            }
+            return `Number of possible castles are: ${count}`;
+        } 
+        // console.log(countCastles([2,6,6,6,3,6,1,1,4]));
+        // console.log(countCastles([2,2,3]));
+        console.log(countCastles([2,6,6,6,3,3,2,2,1,6,1,1,4]));
+        
+    </script>
+</body>
+</html>
